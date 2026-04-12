@@ -4,35 +4,44 @@ import "./window.scss";
 
 const MacWindow = ({
   children,
-  width = "40vw",
-  height = "40vh",
+  width = "42vw",
+  height = "45vh",
   windowName,
   setWindowsState,
+  title,
 }) => {
   return (
     <Rnd
       default={{
         width: width,
         height: height,
-        x: 300,
-        y: 200,
+        x: Math.random() * 80 + 80,
+        y: Math.random() * 60 + 50,
       }}
+      minWidth={280}
+      minHeight={200}
+      bounds="parent"
+      dragHandleClassName="window-nav"
+      style={{ zIndex: 100 }}
     >
       <div className="window">
-        <div className="nav">
+        <div className="nav window-nav">
           <div className="dots">
             <div
               onClick={() =>
-                setWindowsState((state) => ({ ...state, [windowName]: false }))
+                setWindowsState((state) => ({
+                  ...state,
+                  [windowName]: false,
+                }))
               }
               className="dot red"
-            ></div>
-            <div className="dot yellow"></div>
-            <div className="dot green"></div>
+              title="Close"
+            />
+            <div className="dot yellow" title="Minimize" />
+            <div className="dot green" title="Maximize" />
           </div>
-
           <div className="title">
-            <p>nasimreja - zsh</p>
+            <p>{title || "nasimreja — zsh"}</p>
           </div>
         </div>
         <div className="main-content">{children}</div>

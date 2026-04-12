@@ -1,64 +1,124 @@
 .window {
+  background: #0d0d0f;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  height: 100%;
+  color: rgb(168, 168, 168);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-weight: 400;
 
-    background-color: #060606;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    height: 100%;
-    color: rgb(168, 168, 168);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 500;
+  /* Glass frame */
+  border: 0.5px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-    .nav {
+  animation: windowOpen 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-        padding-inline: 0.75rem;
-        padding-block: 0.5rem;
-        border-bottom: 1px solid rgba(245, 245, 245, 0.24);
+  .nav {
+    padding: 0.6rem 0.85rem;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
 
-        display: flex;
-        align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    cursor: grab;
+    user-select: none;
 
-        gap: 1.5rem;
+    &:active {
+      cursor: grabbing;
+    }
 
-        .dots {
-            display: flex;
-            gap: 0.25rem;
+    .dots {
+      display: flex;
+      gap: 0.38rem;
 
-            .dot {
-                height: 15px;
-                width: 15px;
-                background-color: white;
+      .dot {
+        height: 13px;
+        width: 13px;
+        border-radius: 50%;
+        transition: filter 0.15s;
+        position: relative;
 
-                border-radius: 50%;
-            }
-
-            .red {
-                background-color: #eb3535;
-                cursor: default;
-            }
-
-            .yellow {
-                background-color: rgb(247, 247, 81);
-            }
-
-            .green {
-                background-color: rgb(27, 228, 0);
-            }
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          background: rgba(0,0,0,0.15);
+          opacity: 0;
+          transition: opacity 0.15s;
         }
 
+        &:hover::after {
+          opacity: 1;
+        }
+      }
 
+      .red {
+        background: #ff5f57;
+        box-shadow: 0 0 0 0.5px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        cursor: default;
+      }
 
+      .yellow {
+        background: #febc2e;
+        box-shadow: 0 0 0 0.5px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        cursor: default;
+      }
+
+      .green {
+        background: #28c840;
+        box-shadow: 0 0 0 0.5px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        cursor: default;
+      }
     }
 
-    .main-content {
-        height: 100%;
-    }
+    .title {
+      flex: 1;
+      text-align: center;
 
-    .main-content{
-        height: 100%;
+      p {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
     }
+  }
 
-    *::-webkit-scrollbar{
-        width: 8px;
+  .main-content {
+    height: calc(100% - 2.4rem);
+    overflow: hidden;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
+  }
+}
 
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
