@@ -1,0 +1,259 @@
+/* Shared widget base */
+.widget {
+  background: rgba(18, 18, 20, 0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  width: 200px;
+  user-select: none;
+  animation: widgetSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes widgetSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.widget-location,
+.widget-title {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+
+.live-badge {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #30d158;
+  background: rgba(48, 209, 88, 0.15);
+  border: 0.5px solid rgba(48, 209, 88, 0.4);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.3rem;
+  animation: livePulse 2s ease infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ===================== */
+/* CLOCK WIDGET          */
+/* ===================== */
+.clock-widget {
+  .clock-body {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .analog-clock {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  }
+
+  .clock-info {
+    flex: 1;
+  }
+
+  .clock-digital {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .clock-date {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.2rem;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+}
+
+/* ===================== */
+/* WEATHER WIDGET        */
+/* ===================== */
+.weather-widget {
+  .weather-main {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .weather-icon-big {
+    font-size: 2rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  }
+
+  .weather-temps {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .weather-temp {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: white;
+  }
+
+  .weather-feels {
+    font-size: 0.66rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 0.15rem;
+  }
+
+  .weather-label {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .weather-details {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .weather-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.55);
+
+    .detail-icon {
+      font-size: 0.75rem;
+    }
+  }
+
+  .widget-loading {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 0.8rem 0;
+
+    .loading-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      animation: dotBounce 1.2s ease infinite;
+
+      &:nth-child(2) { animation-delay: 0.2s; }
+      &:nth-child(3) { animation-delay: 0.4s; }
+    }
+  }
+
+  .widget-error {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 0.5rem 0;
+  }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.4; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ===================== */
+/* STOCK WIDGET          */
+/* ===================== */
+.stock-widget {
+  .stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: 0.1rem;
+  }
+
+  .stock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.55rem;
+    background: rgba(255, 255, 255, 0.04);
+    transition: background 0.3s ease;
+
+    &.up {
+      background: rgba(48, 209, 88, 0.12);
+    }
+
+    &.down {
+      background: rgba(255, 69, 58, 0.12);
+    }
+  }
+
+  .stock-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stock-symbol {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.02em;
+  }
+
+  .stock-name {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.38);
+    margin-top: 0.05rem;
+  }
+
+  .stock-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .stock-price {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: white;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .stock-change {
+    font-size: 0.6rem;
+    font-weight: 500;
+    margin-top: 0.05rem;
+
+    &.pos { color: #30d158; }
+    &.neg { color: #ff453a; }
+  }
+}
