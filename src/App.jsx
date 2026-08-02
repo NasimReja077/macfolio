@@ -12,7 +12,7 @@ import YouTube from "./components/windows/YouTube";
 import WallpaperPicker from "./components/WallpaperPicker";
 import ClockWidget from "./components/widgets/ClockWidget";
 import WeatherWidget from "./components/widgets/WeatherWidget";
-import StockWidget from "./components/widgets/StockWidget";
+// import StockWidget from "./components/widgets/StockWidget";
 
 const DEFAULT_WALLPAPER = "/ian-dooley-DuBNA1QMpPA-unsplash.jpg";
 
@@ -53,7 +53,7 @@ function App() {
       <div className="desktop-widgets">
         <ClockWidget />
         <WeatherWidget />
-        <StockWidget />
+        {/* <StockWidget /> */}
       </div>
 
       {contextMenu && (
